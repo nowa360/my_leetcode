@@ -27,3 +27,6 @@ class DoubleLinkedList:
         self.tail.prev.next = node
         self.tail.prev = node
         self.length += 1
+
+    def get_first(self):
+        return self.head.next
