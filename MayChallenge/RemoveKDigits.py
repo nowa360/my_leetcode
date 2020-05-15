@@ -24,6 +24,11 @@ Example 3:
 Input: num = "10", k = 2
 Output: "0"
 Explanation: Remove all the digits from the number and it is left with nothing which is 0
+
+
+INTUITION:
+
+If previous digit is greater than current digit, delete previous digit. Then trim zeroes
 """
 
 
