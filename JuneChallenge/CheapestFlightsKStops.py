@@ -5,6 +5,9 @@ There are n cities connected by m flights. Each flight starts from city u and ar
 
 Now given all the cities and flights, together with starting city src and the destination dst, your task is to find the
 cheapest price from src to dst with up to k stops. If there is no such route, output -1.
+
+Time: O((V + E) * log V)
+Space: O(V^2)
 """
 import collections
 import heapq
@@ -19,15 +22,17 @@ def findCheapestPrice(n, flights, src, dst, K):
     :type K: int
     :rtype: int
     """
-    price_map = collections.defaultdict(dict)
-    for start, end, price in flights:
-        price_map[start][end] = price
-    heap = [(0, src, K + 1)]
+    graph = collections.defaultdict(dict)
+    visited = {}
+    for source, destination, weight in flights:
+        graph[source][destination] = weight
+    heap = [(0, src, 0)]
     while heap:
-        price, cur_city, allowed_k = heapq.heappop(heap)
-        if cur_city == dst:
+        price, source, nth_move = heapq.heappop(heap)
+        if source == dst and K >= nth_move - 1:
             return price
-        if allowed_k > 0:
-            for dest in price_map[cur_city]:
-                heapq.heappush(heap, (price + price_map[cur_city][dest], dest, allowed_k - 1))
+        if source not in visited or visited[source] > nth_move:
+            visited[source] = nth_move
+            for neighbor in graph[source]:
+                heapq.heappush(heap, (graph[source][neighbor] + price, neighbor, nth_move + 1))
     return -1
