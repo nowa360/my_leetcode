@@ -21,8 +21,6 @@ Input:
  [1,1,0,0]]
 
 Output: 16
-
-#TODO: COULD BE FASTER
 """
 
 
@@ -40,7 +38,7 @@ class IslandPerimeter(object):
         def do_traverse(y, x):
             count = 0
 
-            if ((x, y) in self.visited):
+            if (x, y) in self.visited:
                 return count
 
             self.visited.add((x, y))
@@ -59,7 +57,7 @@ class IslandPerimeter(object):
 
             for add_x, add_y in [(0, 1), (0, -1), (1, 0), (-1, 0)]:
                 new_x, new_y = x + add_x, y + add_y
-                if new_x >= 0 and new_x < len(grid[0]) and new_y >= 0 and new_y < len(grid):
+                if 0 <= new_x < len(grid[0]) and 0 <= new_y < len(grid):
                     if grid[new_y][new_x] == 0:
                         count += 1
                     # it's a land
