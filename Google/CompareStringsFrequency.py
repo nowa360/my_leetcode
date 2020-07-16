@@ -28,9 +28,7 @@ def compare_st_frequency(a, b):
     for i, str_b in enumerate(b):
         count = 0
         for str_a in a:
-            print(str_a, str_b)
             if not is_more_frequent(str_a, str_b):
-
                 count += 1
         res[i] = count
 
