@@ -35,7 +35,7 @@ def maxProfit(prices):
             max_diff = max(max_diff, -prices[i])
 
         if i == 0:
-            dp[i] == 0
+            dp[i] = 0
         elif i == 1:
             dp[i] = max(prices[1] - prices[0], 0)
         else:
